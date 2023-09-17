@@ -20,15 +20,7 @@ print(is_balanced(expression2))  # Output: False
 
 
 def remove_duplicates(sequence):
-    seen = set()
-    result = []
-
-    for item in sequence:
-        if item not in seen:
-            seen.add(item)
-            result.append(item)
-
-    return result
+    return list(dict.fromkeys(sequence))
 
 # Test case
 input_sequence = [2, 3, 2, 4, 5, 3, 6, 7, 5]
@@ -41,18 +33,10 @@ def word_frequency(sentence):
     sentence = sentence.lower()
     sentence = sentence.translate(str.maketrans('', '', string.punctuation))
     words = sentence.split()
-
-    frequency = {}
-    for word in words:
-        if word in frequency:
-            frequency[word] += 1
-        else:
-            frequency[word] = 1
-
-    return frequency
+    
+    return {word: words.count(word) for word in set(words)}
 
 # Test case
 sentence = "This is a test sentence. This sentence is a test."
 result = word_frequency(sentence)
 print(result)
-
